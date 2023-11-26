@@ -25,9 +25,7 @@ def checkValidSting():
     #ca3 currently passes
     while i < len(reply):
         replyChar = reply[i]
-        print(replyChar)
         wordChar = word[j]
-        print(wordChar)
         if replyChar.isdigit():
             j += int(replyChar)
             if len(reply) + int(replyChar) - 1 != len(word):
