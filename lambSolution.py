@@ -1,6 +1,3 @@
-
-import re
-
 def validString():
     # get inputs
     string = input("Type in word: ")
