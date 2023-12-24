@@ -11,20 +11,17 @@ def main():
             speed = components[1].split(",")
             positions.append(coordinates)
             velocities.append(speed)
-            print("hello")
-            for i in range(len(positions)):
-                a1 = np.array([int(positions[i][0]), int(positions[i][1])])
-                a2 = np.array([int(velocities[i][0]), int(velocities[i][1])])
-                for j in range(i+1, len(positions)):
-                    b1 = np.array([int(positions[j][0]), int(positions[j][1])])
-                    b2 = np.array([int(velocities[j][0]), int(velocities[j][1])])
-
-                    intersection = find_intersection(a1, b1, a2, b2)
-                    if intersection is not None:
-                        if intersection[0] >= 7 and intersection[0] <= 27 and intersection[1] >= 7 and intersection[1] <= 27:
-                            print(intersection[0], intersection[1])
-                            count = count + 1
-                            print(count)
+        for i in range(len(positions)):
+            a1 = np.array([int(positions[i][0]), int(positions[i][1])])
+            b1 = np.array([int(velocities[i][0]), int(velocities[i][1])])                
+            for j in range(i+1, len(positions)):
+                a2 = np.array([int(positions[j][0]), int(positions[j][1])])
+                b2 = np.array([int(velocities[j][0]), int(velocities[j][1])])
+                intersection = find_intersection(a1, b1, a2, b2)
+                if intersection is not None:
+                    if intersection[0] >= 200000000000000 and intersection[0] <= 400000000000000 and intersection[1] >= 200000000000000 and intersection[1] <= 400000000000000:
+                        count = count + 1
+                        print(count)
         print(count)
 
 def find_intersection(a1, b1, a2, b2):
@@ -36,5 +33,16 @@ def find_intersection(a1, b1, a2, b2):
     if det == 0:
         # Lines are parallel, no intersection
         return None
+    # Solve for t and s
+    t = np.linalg.det(np.array([a2 - a1, b2])) / det
+    s = np.linalg.det(np.array([a2 - a1, b1])) / det
+    if t <= 0 or s <= 0:
+        return None
+
+    # Calculate the intersection point
+    intersection_point = a1 + t * b1
+
+    return intersection_point
+
 
 main()
