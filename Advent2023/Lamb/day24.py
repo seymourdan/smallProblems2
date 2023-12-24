@@ -1,6 +1,6 @@
 import numpy as np
 def main():
-    with open("Advent2023\Lamb\day24.txt") as file:
+    with open("Advent2023\Dan\24.txt") as file:
         lines = file.readlines()
         positions = []
         velocities = []
